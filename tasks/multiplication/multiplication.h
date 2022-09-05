@@ -1,5 +1,5 @@
 #pragma once
 
-#include <ccstdint>
+#include <cstdint>
 
 int64_t Multiply(int a, int b);
