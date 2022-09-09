@@ -1,5 +1,5 @@
 - group:    01-homework-one
-  start:    10-09-2022 00:00
+  start:    09-09-2022 00:00
   deadline: 19-09-2022 23:59
   tasks:
     - task: associative_operation
