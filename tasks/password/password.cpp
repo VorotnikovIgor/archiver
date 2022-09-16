@@ -27,9 +27,9 @@ bool ValidatePassword(const std::string& password) {
         }
     }
     if (static_cast<int>(has_upper) + static_cast<int>(has_lower) + static_cast<int>(has_digit) +
-            static_cast<int>(has_other) < min_num_of_classes) {
+            static_cast<int>(has_other) <
+        min_num_of_classes) {
         return false;
     }
     return true;
 }
-
