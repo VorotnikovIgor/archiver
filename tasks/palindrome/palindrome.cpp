@@ -7,13 +7,13 @@ bool IsPalindrome(const std::string& str) {
         if (std::isspace(str[l])) {
             ++l;
         } else if (std::isspace(str[r])) {
-            ++r;
+            --r;
         } else {
             if (str[r] != str[l]) {
                 return false;
             }
             --r;
-            --l;
+            ++l;
         }
     }
     return true;
