@@ -2,7 +2,7 @@
 
 bool IsPalindrome(const std::string& str) {
     size_t l = 0;
-    size_t r = str.size() - 1;
+    size_t r = str.size() - static_cast<size_t>(1);
     while (l < r) {
         if (std::isspace(str[l])) {
             ++l;
