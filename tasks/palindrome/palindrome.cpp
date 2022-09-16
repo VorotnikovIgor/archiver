@@ -1,15 +1,15 @@
 #include "palindrome.h"
 
 bool IsPalindrome(const std::string& str) {
-    size_t l = 0;
-    size_t r = str.size() - static_cast<size_t>(1);
+    auto l = str.begin();
+    auto r = --str.end();
     while (l < r) {
-        if (std::isspace(str[l])) {
+        if (std::isspace(*l)) {
             ++l;
-        } else if (std::isspace(str[r])) {
+        } else if (std::isspace(*r)) {
             --r;
         } else {
-            if (str[r] != str[l]) {
+            if (*r != *l) {
                 return false;
             }
             --r;
