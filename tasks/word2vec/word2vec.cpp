@@ -32,8 +32,9 @@ std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
     std::vector<std::string> answer;
     for (size_t i = 1; i < words.size(); ++i) {
         answer.push_back(words[values[i].second]);
-        if ((i + 1 == words.size()) || (values[i + 1].first + eps < values[i].first))
+        if ((i + 1 == words.size()) || (values[i + 1].first + eps < values[i].first)) {
             break;
+        }
     }
     return answer;
 }
