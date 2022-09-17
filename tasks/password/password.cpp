@@ -13,22 +13,20 @@ bool ValidatePassword(const std::string& password) {
     if (password.size() < min_length || password.size() > max_length) {
         return false;
     }
-    for (size_t i = 0; i < password.size(); ++i) {
-        if (static_cast<char>(min_code) > password[i] || static_cast<char>(max_code) < password[i]) {
+    for (const auto& elem: password) {
+        if (static_cast<char>(min_code) > elem || static_cast<char>(max_code) < elem) {
             return false;
-        } else if (std::isupper(password[i])) {
+        } else if (std::isupper(elem)) {
             has_upper = true;
-        } else if (std::islower(password[i])) {
+        } else if (std::islower(elem)) {
             has_lower = true;
-        } else if (std::isdigit(password[i])) {
+        } else if (std::isdigit(elem)) {
             has_digit = true;
         } else {
             has_other = true;
         }
     }
-    if (static_cast<int>(has_upper) + static_cast<int>(has_lower) + static_cast<int>(has_digit) +
-            static_cast<int>(has_other) <
-        min_num_of_classes) {
+    if (has_upper + has_lower + has_digit + has_other < min_num_of_classes) {
         return false;
     }
     return true;
