@@ -26,8 +26,5 @@ bool ValidatePassword(const std::string& password) {
             has_other = true;
         }
     }
-    if (has_upper + has_lower + has_digit + has_other < min_num_of_classes) {
-        return false;
-    }
-    return true;
+    return has_upper + has_lower + has_digit + has_other >= min_num_of_classes;
 }
