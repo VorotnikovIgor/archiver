@@ -8,8 +8,7 @@ std::vector<std::string> StudentsOrder(const std::vector<StudentAction>& student
     for (size_t i = 0; i < student_actions.size(); ++i) {
         if (student_actions[i].side == Side::Top) {
             cur_order_in_idx.push_front(i);
-        }
-        else {
+        } else {
             cur_order_in_idx.push_back(i);
         }
     }
