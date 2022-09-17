@@ -13,7 +13,7 @@ bool ValidatePassword(const std::string& password) {
     if (password.size() < min_length || password.size() > max_length) {
         return false;
     }
-    for (const auto& elem: password) {
+    for (const auto& elem : password) {
         if (static_cast<char>(min_code) > elem || static_cast<char>(max_code) < elem) {
             return false;
         } else if (std::isupper(elem)) {
