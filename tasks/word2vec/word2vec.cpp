@@ -1,3 +1,4 @@
+#include <cmath>
 #include "word2vec.h"
 
 const double EPS = 1e-8;
@@ -11,7 +12,7 @@ int ScalarProduct(const std::vector<int>& a, const std::vector<int>& b) {
 }
 
 double CalcValue(const int x, const int y) {
-    return static_cast<double>(x) * static_cast<double>(x) / static_cast<double>(y);
+    return static_cast<double>(x) / sqrt(static_cast<double>(y));
 }
 
 bool CmpForDoubles(const std::pair<double, size_t>& x, const std::pair<double, size_t>& y) {
