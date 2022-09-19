@@ -1,7 +1,7 @@
 #include <cmath>
 #include "word2vec.h"
 
-const double EPS = 1e-8;
+const double EPS = 1e-6;
 
 int ScalarProduct(const std::vector<int>& a, const std::vector<int>& b) {
     int sum = 0;
@@ -16,7 +16,7 @@ double CalcValue(const int x, const int y) {
 }
 
 bool CmpForDoubles(const std::pair<double, size_t>& x, const std::pair<double, size_t>& y) {
-    return x.first + EPS >= y.first;
+    return (x.first >= y.first + EPS) || ((std::abs(x.first - y.first) <= EPS) && (x.second <= y.second));
 }
 
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
