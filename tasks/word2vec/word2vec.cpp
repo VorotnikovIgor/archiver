@@ -17,7 +17,6 @@ double CalcValue(const int x, const int y) {
 
 bool CmpForDoubles(const std::pair<double, size_t>& x, const std::pair<double, size_t>& y) {
     return (x.first > y.first + EPS) || ((std::abs(x.first - y.first) < EPS) && (x.second < y.second));
-    return x.first+EPS<=y.first;
 }
 
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
