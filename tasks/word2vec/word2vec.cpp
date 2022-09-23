@@ -14,7 +14,7 @@ std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
     std::vector<int64_t> values(words.size() - 1);
     int64_t max_scalar_product = std::numeric_limits<int64_t>::min();
     for (size_t i = 0; i < values.size() - 1; ++i) {
-        values[i] = ScalarProduct(vectors[0], vectors[i]);
+        values[i] = ScalarProduct(vectors[0], vectors[i + 1]);
         max_scalar_product = std::max(max_scalar_product, values[i]);
     }
     std::vector<std::string> answer;
