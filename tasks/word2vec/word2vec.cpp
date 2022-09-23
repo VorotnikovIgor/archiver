@@ -20,14 +20,14 @@ int64_t sign(int64_t x) {
 }
 
 bool ValGreater(const std::pair<std::pair<int64_t, int64_t>, size_t>& x,
-                       const std::pair<std::pair<int64_t, int64_t>, size_t>& y) {
+                const std::pair<std::pair<int64_t, int64_t>, size_t>& y) {
     int64_t val1 = x.first.first * x.first.first * y.first.second * sign(x.first.first);
     int64_t val2 = y.first.first * y.first.first * x.first.second * sign(y.first.first);
     return (val1 > val2);
 }
 
 bool ValEqual(const std::pair<std::pair<int64_t, int64_t>, size_t>& x,
-                const std::pair<std::pair<int64_t, int64_t>, size_t>& y) {
+              const std::pair<std::pair<int64_t, int64_t>, size_t>& y) {
     int64_t val1 = x.first.first * x.first.first * y.first.second * sign(x.first.first);
     int64_t val2 = y.first.first * y.first.first * x.first.second * sign(y.first.first);
     return (val1 == val2);
