@@ -9,7 +9,7 @@ int64_t ScalarProduct(const std::vector<int>& a, const std::vector<int>& b) {
     return sum;
 }
 
-int64_t sign(int64_t x) {
+int64_t Sign(int64_t x) {
     if (x > 0) {
         return 1;
     } else if (x == 0) {
@@ -21,15 +21,15 @@ int64_t sign(int64_t x) {
 
 bool ValGreater(const std::pair<std::pair<int64_t, int64_t>, size_t>& x,
                 const std::pair<std::pair<int64_t, int64_t>, size_t>& y) {
-    int64_t val1 = x.first.first * x.first.first * y.first.second * sign(x.first.first);
-    int64_t val2 = y.first.first * y.first.first * x.first.second * sign(y.first.first);
+    int64_t val1 = x.first.first * x.first.first * y.first.second * Sign(x.first.first);
+    int64_t val2 = y.first.first * y.first.first * x.first.second * Sign(y.first.first);
     return (val1 > val2);
 }
 
 bool ValEqual(const std::pair<std::pair<int64_t, int64_t>, size_t>& x,
               const std::pair<std::pair<int64_t, int64_t>, size_t>& y) {
-    int64_t val1 = x.first.first * x.first.first * y.first.second * sign(x.first.first);
-    int64_t val2 = y.first.first * y.first.first * x.first.second * sign(y.first.first);
+    int64_t val1 = x.first.first * x.first.first * y.first.second * Sign(x.first.first);
+    int64_t val2 = y.first.first * y.first.first * x.first.second * Sign(y.first.first);
     return (val1 == val2);
 }
 
