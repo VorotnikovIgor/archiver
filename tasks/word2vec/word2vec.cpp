@@ -11,16 +11,16 @@ int64_t ScalarProduct(const std::vector<int>& a, const std::vector<int>& b) {
 
 std::vector<std::string> FindClosestWords(const std::vector<std::string>& words,
                                           const std::vector<std::vector<int>>& vectors) {
-    std::vector<int64_t> values(words.size() - 1);
+    std::vector<int64_t> values(words.size());
     int64_t max_scalar_product = std::numeric_limits<int64_t>::min();
-    for (size_t i = 0; i < values.size() - 1; ++i) {
-        values[i] = ScalarProduct(vectors[0], vectors[i + 1]);
+    for (size_t i = 1; i < values.size(); ++i) {
+        values[i] = ScalarProduct(vectors[0], vectors[i]);
         max_scalar_product = std::max(max_scalar_product, values[i]);
     }
     std::vector<std::string> answer;
-    for (size_t i = 0; i < words.size() - 1; ++i) {
+    for (size_t i = 1; i < words.size(); ++i) {
         if (values[i] == max_scalar_product) {
-            answer.push_back(words[i + 1]);
+            answer.push_back(words[i]);
         }
     }
     return answer;
