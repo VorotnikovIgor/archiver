@@ -1,8 +1,5 @@
 #include <cmath>
 #include "word2vec.h"
-#include <cmath>
-
-const double EPS = 1e-6;
 
 int64_t ScalarProduct(const std::vector<int>& a, const std::vector<int>& b) {
     int64_t sum = 0;
