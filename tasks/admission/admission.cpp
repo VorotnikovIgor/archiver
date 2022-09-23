@@ -9,7 +9,7 @@ bool CmpForApplicants(const Applicant* applicant1, const Applicant* applicant2) 
                     applicant2->student.birth_date.day, applicant2->student.name);
 }
 
-bool CmpForStudents(const Student* student1, const Student* student2){
+bool CmpForStudents(const Student* student1, const Student* student2) {
     return std::tie(student1->name, student1->birth_date.year, student1->birth_date.month, student1->birth_date.day) <
            std::tie(student2->name, student2->birth_date.year, student2->birth_date.month, student2->birth_date.day);
 }
@@ -17,7 +17,7 @@ bool CmpForStudents(const Student* student1, const Student* student2){
 AdmissionTable FillUniversities(const std::vector<University>& universities, const std::vector<Applicant>& applicants) {
     std::vector<const Applicant*> sorted_applicants;
     sorted_applicants.reserve(applicants.size());
-    for (const auto& applicant: applicants) {
+    for (const auto& applicant : applicants) {
         sorted_applicants.push_back(&applicant);
     }
     sort(sorted_applicants.begin(), sorted_applicants.end(), CmpForApplicants);
