@@ -1,36 +1,31 @@
 #include "scorer.h"
 
-bool Cmp(Event& e1, Event e2) {
-    return e1.time < e2.time;
-}
+struct task_state {
+    time_t last_success = 0;
+    time_t last_fail = 0;
+    int dif_of_requests = 0;
+};
 
 ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
-    Events events2 = events;
-    sort(events2.begin(), events2.end(), Cmp);
-    std::set<std::pair<StudentName, TaskName>> check_success;
-    std::set<std::pair<StudentName, TaskName>> open_request;
-    for (const auto& ev : events2) {
+    std::map<std::pair<StudentName, TaskName>, task_state> info;
+    for (const auto& ev : events) {
         std::pair<StudentName, TaskName> students_task = {ev.student_name, ev.task_name};
         if (ev.time > score_time) {
-            break;
+            continue;
         }
         if (ev.event_type == EventType::CheckFailed) {
-            if (check_success.find(students_task) != check_success.end()) {
-                check_success.erase(students_task);
-            }
+            info[students_task].last_fail = std::max(ev.time, info[students_task].last_fail);
         } else if (ev.event_type == EventType::CheckSuccess) {
-            check_success.insert(students_task);
+            info[students_task].last_success = std::max(ev.time, info[students_task].last_success);
         } else if (ev.event_type == EventType::MergeRequestOpen) {
-            open_request.insert(students_task);
+            info[students_task].dif_of_requests += 1;
         } else {
-            if (open_request.find(students_task) != open_request.end()) {
-                open_request.erase(students_task);
-            }
+            info[students_task].dif_of_requests -= 1;
         }
     }
     ScoreTable answer;
-    for (const auto& students_task : check_success) {
-        if (open_request.find(students_task) == open_request.end()) {
+    for (const auto& [students_task, status] : info) {
+        if (status.dif_of_requests == 0 && status.last_success > status.last_fail) {
             answer[students_task.first].insert(students_task.second);
         }
     }
