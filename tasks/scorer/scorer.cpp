@@ -1,13 +1,13 @@
 #include "scorer.h"
 
-struct task_state {
+struct TaskState {
     time_t last_success = 0;
     time_t last_fail = 0;
     int dif_of_requests = 0;
 };
 
 ScoreTable GetScoredStudents(const Events& events, time_t score_time) {
-    std::map<std::pair<StudentName, TaskName>, task_state> info;
+    std::map<std::pair<StudentName, TaskName>, TaskState> info;
     for (const auto& ev : events) {
         std::pair<StudentName, TaskName> students_task = {ev.student_name, ev.task_name};
         if (ev.time > score_time) {
