@@ -1,27 +1,26 @@
 #include "unixpath.h"
 #include <vector>
-#include <iostream>
 
-std::vector<std::string> SplitPath(std::string_view &path) {
-    std::vector<std::string> result;
+std::vector<std::string_view> SplitPath(std::string_view &path) {
+    std::vector<std::string_view> result;
     size_t last = 0;
     for (size_t i = 0; i < path.size(); ++i) {
         if (path[i] == '/') {
             if (i != 0 && path[i - 1] != '/') {
-                result.push_back(static_cast<std::string>(path.substr(last, i - last)));
+                result.push_back(path.substr(last, i - last));
             }
             last = i + 1;
         } else if (i == path.size() - 1) {
             if (path[i] != '/') {
-                result.push_back(static_cast<std::string>(path.substr(last, i + 1 - last)));
+                result.push_back(path.substr(last, i + 1 - last));
             }
         }
     }
     return result;
 }
 
-std::vector<std::string> ClearPath(std::vector<std::string> path1, std::vector<std::string> path2) {
-    std::vector<std::string> result;
+std::vector<std::string_view> ClearPath(std::vector<std::string_view> path1, std::vector<std::string_view> path2) {
+    std::vector<std::string_view> result;
     for (const auto &rep : path1) {
         if (rep == "..") {
             if (!result.empty()) {
@@ -43,10 +42,10 @@ std::vector<std::string> ClearPath(std::vector<std::string> path1, std::vector<s
     return result;
 }
 
-std::string GetAnswer(std::vector<std::string> path) {
+std::string GetAnswer(std::vector<std::string_view> path) {
     std::string answer;
     for (const auto &rep : path) {
-        answer += '/' + rep;
+        answer += '/' + static_cast<std::string>(rep);
     }
     if (answer.empty()) {
         answer = '/';
