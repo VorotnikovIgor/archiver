@@ -5,7 +5,9 @@
 #include <map>
 
 class Poly {
+private:
     std::map<int64_t, int64_t> coefficients_;
+
 public:
     Poly();
     Poly(const std::vector<int64_t> &);
@@ -20,5 +22,5 @@ public:
     bool operator==(const Poly &) const;
     Poly operator-() const;
     bool operator!=(const Poly &) const;
-    friend std::ostream &operator<<(std::ostream &os, const Poly&);
+    friend std::ostream &operator<<(std::ostream &os, const Poly &);
 };
