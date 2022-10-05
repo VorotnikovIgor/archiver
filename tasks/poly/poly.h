@@ -10,8 +10,8 @@ private:
 
 public:
     Poly();
-    Poly(const std::vector<int64_t> &);
-    Poly(const std::vector<std::pair<int64_t, int64_t>> &);
+    explicit Poly(const std::vector<int64_t> &);
+    explicit Poly(const std::vector<std::pair<int64_t, int64_t>> &);
     int64_t operator()(const int64_t &) const;
     Poly operator*(const Poly &) const;
     Poly operator+(const Poly &) const;

@@ -19,14 +19,14 @@ Poly::Poly(const std::vector<std::pair<int64_t, int64_t>> &coefficients) {
         }
     }
 }
-int64_t fast_pow(int x, int pow) {
+int64_t FastPow(int x, int pow) {
     if (pow == 0) {
         return 1;
     }
     if (pow == 1) {
         return x;
     }
-    int64_t res = fast_pow(x, pow / 2);
+    int64_t res = FastPow(x, pow / 2);
     if (pow % 2 == 0) {
         return res * res;
     }
@@ -35,7 +35,7 @@ int64_t fast_pow(int x, int pow) {
 int64_t Poly::operator()(const int64_t &x) const {
     int64_t sum = 0;
     for (const auto &[pow, c] : coefficients_) {
-        sum += c * fast_pow(x, pow);
+        sum += c * FastPow(x, pow);
     }
     return sum;
 }
