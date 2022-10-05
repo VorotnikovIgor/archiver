@@ -16,6 +16,7 @@ public:
     Poly operator-(const Poly &) const;
     void operator-=(const Poly &);
     void operator+=(const Poly &);
+    void operator*=(const Poly &);
     bool operator==(const Poly &) const;
     Poly operator-() const;
     bool operator!=(const Poly &) const;

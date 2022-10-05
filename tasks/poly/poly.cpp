@@ -127,6 +127,21 @@ Poly Poly::operator*(const Poly &poly) const {
     return result;
 }
 
+void Poly::operator*=(const Poly &poly) {
+    Poly result;
+    for (const auto &[pow1, c1] : coefficients_) {
+        for (const auto &[pow2, c2] : poly.coefficients_) {
+            result.coefficients_[pow1 + pow2] += c1 * c2;
+        }
+    }
+    for (const auto &[pow, c] : result.coefficients_) {
+        if (c == 0) {
+            result.coefficients_.erase(pow);
+        }
+    }
+    coefficients_ = result.coefficients_;
+}
+
 std::ostream &operator<<(std::ostream &os, const Poly &poly) {
     os << "y = ";
     if (poly.coefficients_.empty()) {
