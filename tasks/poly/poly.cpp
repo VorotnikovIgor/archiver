@@ -19,7 +19,7 @@ Poly::Poly(const std::vector<std::pair<int64_t, int64_t>> &coefficients) {
         }
     }
 }
-int64_t FastPow(int x, int pow) {
+int64_t FastPow(int64_t x, int64_t pow) {
     if (pow == 0) {
         return 1;
     }
