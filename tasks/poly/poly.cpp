@@ -12,7 +12,7 @@ Poly::Poly(const std::vector<int64_t> &coefficients) {
     }
 }
 
-Poly::Poly(const std::vector<std::pair<int64_t, int64_t>> &coefficients) {
+Poly::Poly(const std::vector<std::pair<uint64_t, int64_t>> &coefficients) {
     for (const auto &[pow, c] : coefficients) {
         if (c != 0) {
             coefficients_[pow] = c;

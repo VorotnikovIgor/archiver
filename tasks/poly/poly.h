@@ -6,7 +6,7 @@
 
 class Poly {
 private:
-    std::map<int64_t, int64_t> coefficients_;
+    std::map<uint64_t, int64_t> coefficients_;
 
 public:
     Poly();
