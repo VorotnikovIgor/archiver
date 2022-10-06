@@ -4,7 +4,7 @@ Poly::Poly() {
     coefficients_ = {};
 }
 
-Poly::Poly(const std::vector<int64_t> &coefficients) {
+Poly::Poly(const std::initializer_list<int64_t> &coefficients) {
     for (size_t pow = 0; pow < coefficients.size(); ++pow) {
         if (coefficients[pow] != 0) {
             coefficients_[pow] = coefficients[pow];
@@ -12,7 +12,7 @@ Poly::Poly(const std::vector<int64_t> &coefficients) {
     }
 }
 
-Poly::Poly(const std::vector<std::pair<uint64_t, int64_t>> &coefficients) {
+Poly::Poly(const std::initializer_list<std::pair<uint64_t, int64_t>> &coefficients) {
     for (const auto &[pow, c] : coefficients) {
         if (c != 0) {
             coefficients_[pow] = c;
