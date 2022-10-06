@@ -48,6 +48,7 @@ public:
     void OpenSafeCell(Cell cell);
     std::set<std::pair<size_t, size_t>> GenerateMines(size_t width, size_t height, size_t mines_count) const;
 private:
+    int closed_;
     Information field_;
     GameStatus status_ = GameStatus::NOT_STARTED;
     time_t time_ = std::time(0);

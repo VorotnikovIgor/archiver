@@ -2,7 +2,7 @@
 
 bool PutMine(size_t i, size_t j, size_t height, size_t width, size_t mines_count) {
     size_t cells_left = (width - j) + (height - i - 1) * width;
-    size_t rnd = rand() % cells_left;
+    size_t rnd = rand() * rand() % cells_left;
     return rnd < mines_count;
 }
 
@@ -29,6 +29,7 @@ Minesweeper::Minesweeper(size_t width, size_t height, size_t mines_count) {
     }
     time_ = std::time(0);
     status_ = GameStatus::IN_PROGRESS;
+    closed_ = height * width - mines_count;
 }
 
 void Minesweeper::NewGame(size_t width, size_t height, size_t mines_count) {
@@ -46,6 +47,7 @@ Minesweeper::Minesweeper(size_t width, size_t height, const std::vector<Mineswee
     }
     time_ = std::time(0);
     status_ = GameStatus::IN_PROGRESS;
+    closed_ = height * width - cells_with_mines.size();
 }
 
 void Minesweeper::NewGame(size_t width, size_t height, const std::vector<Minesweeper::Cell>& cells_with_mines) {
@@ -111,6 +113,7 @@ Minesweeper::GameStatus Minesweeper::GetGameStatus() const {
 
 void Minesweeper::OpenSafeCell(Minesweeper::Cell cell) {
     field_[cell.y][cell.x].open = true;
+    closed_--;
     int num = MinesNear(cell.y, cell.x);
     if (num == 0) {
         for (int k = -1; k < 2; ++k) {
@@ -120,7 +123,8 @@ void Minesweeper::OpenSafeCell(Minesweeper::Cell cell) {
                 }
                 if ((static_cast<int>(cell.x) + l) >= 0 && (static_cast<int>(cell.y) + k) >= 0 &&
                     (static_cast<int>(cell.x) + l) < static_cast<int>(field_[0].size()) &&
-                    (static_cast<int>(cell.y) + k) < static_cast<int>(field_.size())) {
+                    (static_cast<int>(cell.y) + k) < static_cast<int>(field_.size()) &&
+                    !field_[cell.y + k][cell.x + l].open && !field_[cell.y + k][cell.x + l].flag) {
                     OpenSafeCell({cell.x + l, cell.y + k});
                 }
             }
@@ -134,7 +138,15 @@ void Minesweeper::OpenCell(const Minesweeper::Cell& cell) {
     }
     if (field_[cell.y][cell.x].mine) {
         status_ = GameStatus::DEFEAT;
+        for (size_t i = 0; i<field_.size(); ++i){
+            for (size_t j = 0; j < field_[0].size(); ++j){
+                field_[i][j].open = true;
+            }
+        }
         return;
     }
     OpenSafeCell(cell);
+    if (closed_ == 0) {
+        status_ = GameStatus::VICTORY;
+    }
 }
