@@ -47,6 +47,7 @@ public:
     int MinesNear(int i, int j) const;
     void OpenSafeCell(Cell cell);
     std::set<std::pair<size_t, size_t>> GenerateMines(size_t width, size_t height, size_t mines_count) const;
+
 private:
     int closed_;
     Information field_;
