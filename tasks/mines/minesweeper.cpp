@@ -138,8 +138,8 @@ void Minesweeper::OpenCell(const Minesweeper::Cell& cell) {
     }
     if (field_[cell.y][cell.x].mine) {
         status_ = GameStatus::DEFEAT;
-        for (size_t i = 0; i<field_.size(); ++i){
-            for (size_t j = 0; j < field_[0].size(); ++j){
+        for (size_t i = 0; i < field_.size(); ++i) {
+            for (size_t j = 0; j < field_[0].size(); ++j) {
                 field_[i][j].open = true;
             }
         }
