@@ -5,10 +5,12 @@ Poly::Poly() {
 }
 
 Poly::Poly(const std::initializer_list<int64_t> &coefficients) {
-    for (size_t pow = 0; pow < coefficients.size(); ++pow) {
-        if (coefficients[pow] != 0) {
-            coefficients_[pow] = coefficients[pow];
+    int pow = 0;
+    for (const auto &c : coefficients) {
+        if (c != 0) {
+            coefficients_[pow] = c;
         }
+        pow++;
     }
 }
 
