@@ -2,7 +2,7 @@
 
 bool PutMine(size_t i, size_t j, size_t height, size_t width, size_t mines_count) {
     size_t cells_left = (width - j) + (height - i - 1) * width;
-    size_t rnd = rand() * rand() % cells_left;
+    size_t rnd = 1ll * rand() * rand() % cells_left;
     return rnd < mines_count;
 }
 
