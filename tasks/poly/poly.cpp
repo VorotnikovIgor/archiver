@@ -72,22 +72,24 @@ Poly Poly::operator-() const {
     return result;
 }
 
-void Poly::operator+=(const Poly &poly) {
+Poly &Poly::operator+=(const Poly &poly) {
     for (const auto &[pow, c1] : poly.coefficients_) {
         coefficients_[pow] += c1;
         if (coefficients_[pow] == 0) {
             coefficients_.erase(pow);
         }
     }
+    return *this;
 }
 
-void Poly::operator-=(const Poly &poly) {
+Poly &Poly::operator-=(const Poly &poly) {
     for (const auto &[pow, c1] : poly.coefficients_) {
         coefficients_[pow] -= c1;
         if (coefficients_[pow] == 0) {
             coefficients_.erase(pow);
         }
     }
+    return *this;
 }
 
 bool Poly::operator==(const Poly &poly) const {
@@ -129,7 +131,7 @@ Poly Poly::operator*(const Poly &poly) const {
     return result;
 }
 
-void Poly::operator*=(const Poly &poly) {
+Poly &Poly::operator*=(const Poly &poly) {
     Poly result;
     for (const auto &[pow1, c1] : coefficients_) {
         for (const auto &[pow2, c2] : poly.coefficients_) {
@@ -142,6 +144,7 @@ void Poly::operator*=(const Poly &poly) {
         }
     }
     coefficients_ = result.coefficients_;
+    return *this;
 }
 
 std::ostream &operator<<(std::ostream &os, const Poly &poly) {
