@@ -206,7 +206,7 @@ void Vector::Clear() {
 
 void Vector::PushBack(const ValueType& new_element) {
     if (size_ == capacity_) {
-        capacity_ = std::max(1ull, 2 * capacity_);
+        capacity_ = std::max(1ull, 2ull * capacity_);
         ValueType* data_new = new ValueType[capacity_];
         for (size_t i = 0; i < size_; ++i) {
             data_new[i] = data_[i];
