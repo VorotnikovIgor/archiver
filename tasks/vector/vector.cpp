@@ -195,7 +195,7 @@ void Vector::Reserve(Vector::SizeType new_capacity) {
         for (size_t i = 0; i < size_; ++i) {
             data_new[i] = data_[i];
         }
-        delete data_;
+        delete[] data_;
         data_ = data_new;
     }
 }
@@ -211,7 +211,7 @@ void Vector::PushBack(const ValueType& new_element) {
         for (size_t i = 0; i < size_; ++i) {
             data_new[i] = data_[i];
         }
-        delete data_;
+        delete[] data_;
         data_ = data_new;
     }
     size_ += 1;
