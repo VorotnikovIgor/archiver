@@ -12,6 +12,8 @@ public:
     using DifferenceType = ptrdiff_t;
 
     class Iterator {
+        ValueType* ptr_;
+
     public:
         explicit Iterator(ValueType* pointer);
         Iterator();
@@ -69,4 +71,8 @@ public:
 
     Iterator begin();  // NOLINT
     Iterator end();    // NOLINT
+private:
+    size_t capacity_;
+    size_t size_;
+    ValueType* data_;
 };
