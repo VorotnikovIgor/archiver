@@ -4,7 +4,7 @@
 #include "trie.h"
 
 class Decoder {
-    std::string archive_name;
+    std::string archive_name_;
 
 public:
     explicit Decoder(std::string file_name);

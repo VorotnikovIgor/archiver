@@ -4,7 +4,7 @@ Decoder::Decoder(std::string file_name) : archive_name(file_name) {
 }
 
 void Decoder::Unzip() const {
-    FileToRead archive(archive_name);
+    FileToRead archive(archive_name_);
     ExtendedChar next_extended_char = 0;
     while (next_extended_char != ARCHIVE_END) {
         size_t cnt_let = archive.GetExtendedChar();
