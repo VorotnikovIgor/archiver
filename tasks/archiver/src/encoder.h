@@ -6,9 +6,6 @@
 using ExtendedChar = uint16_t;
 
 class Encoder {
-    const ExtendedChar FILENAME_END = 256;
-    const ExtendedChar ONE_MORE_FILE = 257;
-    const ExtendedChar ARCHIVE_END = 258;
     std::vector<std::string> files_;
     std::string archive_name_;
     std::vector<ExtendedChar> canonical_let_order_;
