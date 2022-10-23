@@ -1,6 +1,6 @@
 #include "decoder.h"
 
-Decoder::Decoder(std::string file_name) : archive_name(file_name) {
+Decoder::Decoder(std::string file_name) : archive_name_(file_name) {
 }
 
 void Decoder::Unzip() const {
